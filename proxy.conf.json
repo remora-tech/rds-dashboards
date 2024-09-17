@@ -1,0 +1,8 @@
+{
+    "/api": {
+        "target": "https://crm.rdstation.com",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

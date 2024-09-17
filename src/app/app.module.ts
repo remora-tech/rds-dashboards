@@ -7,6 +7,7 @@ import { ComponentsModule } from './modules/components/components.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { registerLocaleData } from '@angular/common'
 import localePt from '@angular/common/locales/pt';
+import { HttpClientModule } from '@angular/common/http';
 
 const LOCALE = 'pt-BR';
 registerLocaleData(localePt, LOCALE);
@@ -20,6 +21,7 @@ registerLocaleData(localePt, LOCALE);
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,
+    HttpClientModule,
   ],
   providers: [
     provideAnimationsAsync(),
