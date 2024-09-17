@@ -18,8 +18,7 @@ export class CardPercentComponent {
   percent: number = 0;
 
   onSelectChange() {
-    if (!this.sourceStage) return;
-    if (!this.targetStage) return;
+    if (!this.sourceStage || !this.targetStage) return;
     this.percent = (this.sourceStage.value - this.targetStage.value) / this.sourceStage.value;
   }
 }
