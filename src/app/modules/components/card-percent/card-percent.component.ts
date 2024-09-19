@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Stage } from '../../../interfaces/stage.interface';
 
 @Component({
@@ -6,23 +6,23 @@ import { Stage } from '../../../interfaces/stage.interface';
   templateUrl: './card-percent.component.html',
   styleUrl: './card-percent.component.scss'
 })
-export class CardPercentComponent {
-  @Input() sourceStages: Stage[] = [
-    { name: 'Lead Marketing', value: 100 },
-    { name: 'Conectado', value: 60 },
-    { name: 'Pagamento', value: 40 },
-    { name: 'Venda Realizada', value: 20 },
-  ];
+export class CardPercentComponent implements OnInit {
+  @Input({ required: true }) stages: Stage[] = [];
+  sourceStages: Stage[] = [];
   targetStages: Stage[] = [];
   sourceStage!: Stage;
   targetStage!: Stage;
   percent: number = 0;
 
+  ngOnInit() {
+    this.sourceStages = this.stages.slice(0, this.stages.length - 1);
+  }
+
   onSelectChange() {
     if (!this.sourceStage) return;
 
     const initialTargetStageIndex = this.sourceStages.indexOf(this.sourceStage) + 1;
-    this.targetStages = this.sourceStages.slice(initialTargetStageIndex);
+    this.targetStages = this.stages.slice(initialTargetStageIndex);
 
     if (!this.targetStage) return;
 
