@@ -1,4 +1,6 @@
 export interface Stage {
+    id: string;
     name: string;
-    value: number;
+    description: string;
+    value: number; // Essa propriedade não deve ficar aqui
 }

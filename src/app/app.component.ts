@@ -7,19 +7,18 @@ import { Stage } from './interfaces/stage.interface';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
-  stages: Stage[] = [
-    { name: 'Lead Marketing', value: 100 },
-    { name: 'Conectado', value: 60 },
-    { name: 'Pagamento', value: 40 },
-    { name: 'Venda Realizada', value: 20 },
-  ];
+export class AppComponent implements OnInit {
+  stages: Stage[] = [];
 
   constructor(private readonly rdStationService: RdStationService) { }
 
   ngOnInit() {
-    this.rdStationService.getDeals().subscribe((deals) => {
-      console.log(deals);
-    });
+    setTimeout(() => {
+      this.getStages();
+    }, 3000);
+  }
+
+  getStages() {
+    this.rdStationService.getStages().subscribe((stages) => this.stages = stages);
   }
 }

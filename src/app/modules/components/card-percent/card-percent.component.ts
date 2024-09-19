@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Stage } from '../../../interfaces/stage.interface';
 
 @Component({
@@ -6,7 +6,7 @@ import { Stage } from '../../../interfaces/stage.interface';
   templateUrl: './card-percent.component.html',
   styleUrl: './card-percent.component.scss'
 })
-export class CardPercentComponent implements OnInit {
+export class CardPercentComponent implements OnInit, OnChanges {
   @Input({ required: true }) stages: Stage[] = [];
   sourceStages: Stage[] = [];
   targetStages: Stage[] = [];
@@ -15,6 +15,11 @@ export class CardPercentComponent implements OnInit {
   percent: number = 0;
 
   ngOnInit() {
+    this.sourceStages = this.stages.slice(0, this.stages.length - 1);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(!changes['stages']) return;
     this.sourceStages = this.stages.slice(0, this.stages.length - 1);
   }
 
@@ -30,6 +35,7 @@ export class CardPercentComponent implements OnInit {
   }
 
   private calcConversion(): number {
-    return (this.sourceStage.value - this.targetStage.value) / this.sourceStage.value;
+    if (this.targetStage.value === 0) return 0;
+    return this.sourceStage.value / this.targetStage.value;
   }
 }
