@@ -8,7 +8,7 @@ import { Stage } from '../../interfaces/stage.interface';
   providedIn: 'root'
 })
 export class RdStationService {
-  private readonly rdStationToken: string = '63e633895d4fce002cd891fc';
+  private readonly rdStationToken: string = '';
 
   constructor(private readonly httpClient: HttpClient) { }
 
